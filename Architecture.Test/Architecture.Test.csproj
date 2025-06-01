@@ -19,7 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CleanArchitecture01\Application\Application.csproj" />
     <ProjectReference Include="..\CleanArchitecture01\Domain\Domain.csproj" />
+    <ProjectReference Include="..\CleanArchitecture01\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\CleanArchitecture01\Presentation\Presentation.csproj" />
+    <ProjectReference Include="..\CleanArchitecture01\Web\Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
