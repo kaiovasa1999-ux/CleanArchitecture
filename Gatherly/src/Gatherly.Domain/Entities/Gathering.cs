@@ -1,7 +1,4 @@
-﻿using Gatherly.Domain.Repositories;
-using System.Threading;
-
-namespace Gatherly.Domain.Entities;
+﻿namespace Gatherly.Domain.Entities;
 
 public class Gathering
 {
@@ -21,26 +18,16 @@ public class Gathering
         Type = type;
         Name = name;
         location = location;
-
     }
     public Guid Id { get; private set; }
-
     public Member Creator { get; private set; }
-
     public GatheringType Type { get; private set; }
-
     public string Name { get; private set; }
-
     public DateTime ScheduledAtUtc { get; private set; }
-
     public string? Location { get; private set; }
-
     public int? MaximumNumberOfAttendees { get; set; }
-
     public DateTime? InvitationsExpireAtUtc { get; set; }
-
     public int NumberOfAttendees { get; set; }
-
     public IReadOnlyCollection<Attendee> Attendees => _attendees;
 
     public IReadOnlyCollection<Invitation> Invitations => _invitations;
