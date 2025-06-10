@@ -1,6 +1,7 @@
-﻿namespace eShop;
+﻿namespace  eShop.Domain;
 
-public class Customer (int id, string name, string address, string phone, string email)
+
+public class Customer
 {
     
 }
