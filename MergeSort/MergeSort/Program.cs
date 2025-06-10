@@ -4,10 +4,6 @@
 int[] array = {8, 2, 5, 3, 4, 7, 6, 1};
 MergeSort(array);
 
-for (int i = 0; i < array.Length; i++)
-{
-    Console.WriteLine(array[i]);
-}
 
 static void MergeSort(int[] arr)
 {
