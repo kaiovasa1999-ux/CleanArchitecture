@@ -2,49 +2,74 @@
 
 using System.Security.Cryptography;
 
-string text = "Bob hit a ball, the hit BALL flew far after it was hit.";
-string[] arr = new String[] { "hit" };
-Console.WriteLine("asdf");
-var res = MostCommonWord(text, arr);
-Console.WriteLine(res);
+int[] arr1 = new int[] { 1, 2, 3 };
+int[] arr2 = new int[] { 1, 1 };
+Console.WriteLine(FindContentChildren(arr1, arr2));
 
-
-string MostCommonWord(string paragraph, string[] banned)
+static int FindContentChildren(int[] g, int[] s)
 {
-    var dict = new Dictionary<string, int>();
-    var commonWord = string.Empty;
-    var pureWords = paragraph
-        .Split(' ')
-        .Select(x =>
-            new string(x.ToLower()
-                .Where(char.IsLetter)
-                .ToArray()
-            )
-        )
-        .Where(clean => !string.IsNullOrEmpty(clean))
-        .ToList();
-    foreach (var word in pureWords)
+    int cookiesCount = 0;
+    int gIndex = 0;
+    int sIndex = 0;
+    g.OrderBy(x => x);
+    s.OrderBy(x => x);
+
+    while (gIndex < g.Length || sIndex < s.Length)
     {
-        if (dict.ContainsKey(word))
+        int childGreed = g[gIndex];
+        int cookieSize = s[sIndex];
+        if (childGreed > cookieSize)
         {
-            dict[word]++;
+            sIndex++;
             continue;
         }
-
-        dict.Add(word, 1);
-    }
-
-    var sortedDict = dict.OrderByDescending(kvp => kvp.Value).ToDictionary();
-    foreach (var word in banned)
-    {
-        if (sortedDict.ContainsKey(word))
+        else if (childGreed == cookieSize)
         {
-            sortedDict.Remove(word);
-            continue;
+            cookiesCount++;
+            sIndex++;
+            gIndex++;
         }
     }
-
-    commonWord = sortedDict.FirstOrDefault().Key;
-
-    return commonWord;
+    return cookiesCount;
 }
+
+
+// string MostCommonWord(string paragraph, string[] banned)
+// {
+//     var dict = new Dictionary<string, int>();
+//     var commonWord = string.Empty;
+//     var pureWords = paragraph
+//         .Split(' ')
+//         .Select(x =>
+//             new string(x.ToLower()
+//                 .Where(char.IsLetter)
+//                 .ToArray()
+//             )
+//         )
+//         .Where(clean => !string.IsNullOrEmpty(clean))
+//         .ToList();
+//     foreach (var word in pureWords)
+//     {
+//         if (dict.ContainsKey(word))
+//         {
+//             dict[word]++;
+//             continue;
+//         }
+//
+//         dict.Add(word, 1);
+//     }
+//
+//     var sortedDict = dict.OrderByDescending(kvp => kvp.Value).ToDictionary();
+//     foreach (var word in banned)
+//     {
+//         if (sortedDict.ContainsKey(word))
+//         {
+//             sortedDict.Remove(word);
+//             continue;
+//         }
+//     }
+//
+//     commonWord = sortedDict.FirstOrDefault().Key;
+//
+//     return commonWord;
+// }
